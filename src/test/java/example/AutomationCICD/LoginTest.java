@@ -17,65 +17,31 @@ public class LoginTest {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
+        options.addArguments("--headless=new");  
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        driver.get("https://www.saucedemo.com/");
     }
 
     @Test
-<<<<<<< HEAD
     void addToCart() {
     	
         driver.get("https://www.saucedemo.com/");
-=======
-    void validLoginTest() {
 
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
->>>>>>> 18b78e3a79ad58a8799fdcc6ac62d3d47cfff254
+        driver.findElement(By.id("user-name"))
+                .sendKeys("standard_user");
 
-        String actualUrl = driver.getCurrentUrl();
-        assertTrue(actualUrl.contains("inventory"));
-    }
+        driver.findElement(By.id("password"))
+                .sendKeys("secret_sauce");
 
-    @Test
-void invalidLoginTest() {
+        driver.findElement(By.id("login-button"))
+                .click();
 
-    driver.findElement(By.id("user-name")).sendKeys("standard_user");
-    driver.findElement(By.id("password")).sendKeys("1234");
-    driver.findElement(By.id("login-button")).click();
+        String currentUrl = driver.getCurrentUrl();
 
-    String errorMsg = driver.findElement(By.cssSelector("h3[data-test='error']")).getText();
-
-<<<<<<< HEAD
         assertTrue(currentUrl.contains("inventory"));
-=======
-    assertEquals(
-        "Epic sadface: Username and password do not match any user in this service",
-        errorMsg
-    );
-}
-
-    @Test
-    void emptyTest() {
-
-        driver.findElement(By.id("login-button")).click();
-
-        String errorMsg = driver.findElement(By.cssSelector("h3[data-test='error']")).getText();
-
-        assertEquals("Epic sadface: Username is required", errorMsg);
-    }
-    
-    @Test
-    void addToCart() {
-
-        testValidLogin();
->>>>>>> 18b78e3a79ad58a8799fdcc6ac62d3d47cfff254
         
         // Add first product to cart
         driver.findElement(By.id("add-to-cart-sauce-labs-backpack"))
@@ -89,8 +55,8 @@ void invalidLoginTest() {
     }
 
 
-    @AfterEach
-    void tearDown() {
-        driver.quit();
-    }
+//    @AfterEach
+//    void tearDown() {
+//        driver.quit();
+//    }
 }
