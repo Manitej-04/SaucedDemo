@@ -26,8 +26,8 @@ public class LoginTest {
     }
 
     @Test
-    void testValidLogin() {
-
+    void addToCart() {
+    	
         driver.get("https://www.saucedemo.com/");
 
         driver.findElement(By.id("user-name"))
@@ -42,12 +42,6 @@ public class LoginTest {
         String currentUrl = driver.getCurrentUrl();
 
         assertTrue(currentUrl.contains("inventory"));
-    }
-    
-    @Test
-    void addToCart() {
-
-        testValidLogin();
         
         // Add first product to cart
         driver.findElement(By.id("add-to-cart-sauce-labs-backpack"))
