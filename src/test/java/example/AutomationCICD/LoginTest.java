@@ -30,11 +30,11 @@ public class LoginTest {
 
         driver.get("https://www.saucedemo.com/");
 
-        driver.findElement(By.id("user"))
-                .sendKeys("standard_user12");
+        driver.findElement(By.id("user-name"))
+                .sendKeys("standard_user");
 
         driver.findElement(By.id("password"))
-                .sendKeys("secret_sauce123");
+                .sendKeys("secret_sauce");
 
         driver.findElement(By.id("login-button"))
                 .click();
@@ -43,6 +43,23 @@ public class LoginTest {
 
         assertTrue(currentUrl.contains("inventory"));
     }
+    
+    @Test
+    void addToCart() {
+
+        testValidLogin();
+        
+        // Add first product to cart
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack"))
+                .click();
+
+        // Verify cart badge shows 1
+        WebElement cartBadge =
+                driver.findElement(By.className("shopping_cart_badge"));
+
+        assertEquals("1", cartBadge.getText());
+    }
+
 
     @AfterEach
     void tearDown() {
