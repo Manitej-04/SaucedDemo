@@ -30,7 +30,7 @@ public class LoginTest {
 
         driver.get("https://www.saucedemo.com/");
 
-        driver.findElement(By.id("user-name"))
+        driver.findElement(By.id("user"))
                 .sendKeys("standard_user12");
 
         driver.findElement(By.id("password"))
